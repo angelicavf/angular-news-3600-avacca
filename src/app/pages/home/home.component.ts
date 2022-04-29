@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  movieList: any[] = [1, 1, 1, 1, 1]
+  newsApi: any[] = [1, 1, 1, 1, 1]
 
   constructor() { }
 
