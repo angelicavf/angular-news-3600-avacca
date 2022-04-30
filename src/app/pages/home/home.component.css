@@ -3,4 +3,6 @@
     max-height: 100vh;
     min-height: 100vh;
     overflow: scroll;
+    min-width: 80vw;
+    max-width: 100vh;
 }

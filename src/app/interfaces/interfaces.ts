@@ -11,7 +11,7 @@ export interface Article {
     title: String,
     description: String,
     url: String,
-    urlRoImage: String,
+    urlToImage: String,
     publishedAt: Date,
     content: string
 }

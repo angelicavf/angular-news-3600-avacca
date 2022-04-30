@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Article, Resultmain } from 'src/app/interfaces/interfaces';
+import { NewsApiService } from 'src/app/services/news-api.service';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +9,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  newsApi: any[] = [1, 1, 1, 1, 1]
+  newsApi: Article[] = [];
+  textSearch: string = '';
 
-  constructor() { }
+  constructor(private service: NewsApiService) { }
 
   ngOnInit(): void {
+    this.service.getDataNews()
+      .subscribe(resp => {
+        console.log(resp.articles)
+        this.newsApi = resp.articles;
+
+
+      })
+
+
+
+  }
+
+  onClickSearch() {
+    console.log("Click en buscar:" + this.textSearch);
+    this.service.searchDataNews(this.textSearch)
+      .subscribe(resp => {
+        console.log(resp.articles);
+      })
+
   }
 
 }
