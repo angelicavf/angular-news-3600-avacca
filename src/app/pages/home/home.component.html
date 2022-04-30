@@ -1,10 +1,10 @@
-<div class="div-content">
+<div class="div-content" *ngIf="loading_pages==true">
 
     <section class="text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
                 <h1 class="fw-light">NEWS-AIEP</h1>
-                <p class="lead text-muted">La mejor plataforma de peliculas y streaming que encoentraras en la web</p>
+                <p class="lead text-muted">the best news portal on the web</p>
 
                 <form class="d-flex">
 
@@ -19,8 +19,16 @@
 
     <div class="album py-5 bg-light">
         <div class="container">
-
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div *ngIf="newsApi.length==0 && loading==false">
+                <h3>Search not found</h3>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div *ngIf="loading==true" class="d-flex align-items-center">
+                    <strong>Loading...</strong>
+                    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                </div>
+            </div>
+            <div *ngIf="newsApi.length>0" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
                 <div *ngFor="let article of newsApi" class="col">
                     <div class="card shadow-sm">
@@ -32,17 +40,12 @@
                                 <div class="btn-group">
                                     <a href="{{article.url}}" target="_blank" type="button"
                                         class="btn btn-sm btn-outline-secondary">Read article</a>
-
                                 </div>
                                 <small class="text-muted">{{article.publishedAt}}</small>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-
-
             </div>
         </div>
     </div>

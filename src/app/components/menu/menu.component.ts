@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
+  loading: Boolean = false;
+
   items: any[] = [
     {
       url: 'home',
@@ -30,5 +32,9 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+
+
+
 
 }

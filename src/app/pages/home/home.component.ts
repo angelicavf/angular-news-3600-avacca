@@ -11,10 +11,13 @@ export class HomeComponent implements OnInit {
 
   newsApi: Article[] = [];
   textSearch: string = '';
+  loading: Boolean = false;
+  loading_pages: Boolean = false;
 
   constructor(private service: NewsApiService) { }
 
   ngOnInit(): void {
+
     this.service.getDataNews()
       .subscribe(resp => {
         console.log(resp.articles)
@@ -22,17 +25,35 @@ export class HomeComponent implements OnInit {
 
 
       })
+    setTimeout(() => {
 
+      this.loading_pages = true;
 
+    }, 1800)
+  }
+  onClickSearch() {
+    this.loading = true;
+    this.newsApi = [];
+    console.log("Click en buscar:" + this.textSearch);
+    setTimeout(() => {
+      this.service.searchDataNews(this.textSearch)
+        .subscribe(resp => {
+          this.loading = false;
+          console.log(resp.articles);
+          if (this.newsApi = []) {
+            this.newsApi = resp.articles;
+
+          } else {
+            this.newsApi = [];
+          }
+          this.newsApi = resp.articles;
+        })
+
+    }, 3000)
 
   }
 
-  onClickSearch() {
-    console.log("Click en buscar:" + this.textSearch);
-    this.service.searchDataNews(this.textSearch)
-      .subscribe(resp => {
-        console.log(resp.articles);
-      })
+  homeLoading() {
 
   }
 
